@@ -2,12 +2,17 @@ name: Daily DV Lottery Check
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # runs every day at 9:00 UTC
-  workflow_dispatch:      # allows manual run
+    - cron: '0 9 * * *'  # runs daily at 9:00 UTC
+  workflow_dispatch:
 
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+      EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+      EMAIL_SUBJECT: ${{ secrets.EMAIL_SUBJECT }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
