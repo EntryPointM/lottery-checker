@@ -29,7 +29,11 @@ def send_email(message):
         print(f"❌ Email sending failed: {e}")
 
 def check_dv_status():
-    response = requests.get(URL, timeout=10)
+    print("Checking DV site...")
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+    }
+    response = requests.get(URL, headers=headers, timeout=15)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
     text = soup.get_text().lower()
