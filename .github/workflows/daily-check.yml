@@ -1,0 +1,24 @@
+name: Daily DV Lottery Check
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # runs every day at 9:00 UTC
+  workflow_dispatch:      # allows manual run
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run DV checker
+        run: python check_dv.py
