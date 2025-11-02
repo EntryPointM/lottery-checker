@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 URL = "https://dvprogram.state.gov"
-KEYWORDS = ["dv-2027", "entries", "open", "registration", "now accepting"]
+KEYWORDS = ["dv-2027", "now accepting"]
 
 def send_email(message):
     try:
